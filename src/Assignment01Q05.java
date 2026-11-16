@@ -1,8 +1,35 @@
 public class Assignment01Q05 {
     public static int findShortestPath(int[][] m, int i, int j) {
-        // TODO: implement
-        return -1;
-    }
+        if (i == j) {
+            return 0;
+        }
+
+        int n = m.length;
+        int[] dist = new int[n];
+
+        for (int v = 0; v < n; v++) {
+            dist[v] = -1;
+        }
+        dist[i] = 0;
+
+        for (int k = 0; k < n - 1; k++) {
+            for (int u = 0; u < n; u++) {
+                if (dist[u] == k) {
+                    for (int v = 0; v < n; v++) {
+                        if (m[u][v] == 1 && dist[v] == -1) {
+                            dist[v] = k + 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (dist[j] != -1) {
+            return dist[j];
+        }
+    
+    return -1;
+}
 
     public static void main(String[] args) {
         System.out.println(
